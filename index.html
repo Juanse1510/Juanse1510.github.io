@@ -2,31 +2,24 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Parcial</title>
-  <script src="https://www.gstatic.com/charts/loader.js"></script>
-  <link rel="stylesheet" href="estilos.css">
+  <meta name="viewport" content="initial-scale=1.0, width=device-width">
+  <title>Aplicaciones Web - Proyecto</title>
+  <script src="https://www.gstatic.com/charts/loader.js" type="text/javascript"></script>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="contenedor-principal">
-    <header>
-      <h2>Parcial - Aplicaciones WEB</h2>
-      <p>Autor: Juan Sebastian Lopez Palacios | Identificación:1005898261 </p>
-    </header>
-    <section class="contenido">
-      <figure>
-        <img src="equation.png" alt="Imagen de Ecuación" id="imagen-ecuacion">
-        <figcaption>Ecuación </figcaption>
-      </figure>
-      <div class="contenedor-boton">
-        <button id="boton-procesar">Ejecutar</button>
-      </div>
-      <article id="salida">
-        <table id="tabla-resultados"></table>
-        <div id="grafico"></div>
-      </article>
-    </section>
+  <div class="main-container">
+    <h1>Aplicaciones Web - Proyecto</h1>
+    <p>Estudiante: Juan Sebastian Lopez Palacios | ID: 1005898261 </p>
+    <img id="img-equation" src="equacion.png" alt="Imagen de Ecuación">
+    <div class="btn-container">
+      <button id="btn-process">Iniciar Proceso</button>
+    </div>
+    <div id="output">
+      <table id="table-results"></table>
+      <div id="graph"></div>
+    </div>
   </div>
-  <script src="main.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>

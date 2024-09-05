@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Demostración con Gráficos de Google</title>
+  <script src="https://www.gstatic.com/charts/loader.js"></script>
+  <script>
+    google.charts.load('current', {packages: ['corechart']});
+    google.charts.setOnLoadCallback(renderChart);
+
+    function renderChart() {
+      const datos = google.visualization.arrayToDataTable([
+        ['Categoría de Error', 'Frecuencia'],
+        ['Arcoseno', 187],
+        ['Arcocoseno', 513],
+        ['Raíz Cuadrada', 481],
+        ['División', 0],
+        ['Logaritmo Natural', 579]
+      ]);
+
+      const opciones = {
+        title: 'Distribución de Tipos de Errores',
+        is3D: false,
+        pieHole: 0.3
+      };
+
+      const grafico = new google.visualization.PieChart(document.querySelector('#grafico_div'));
+      grafico.draw(datos, opciones);
+    }
+  </script>
+</head>
+<body>
+  <header>
+    <h2>Visualización de Datos con Google Charts</h2>
+  </header>
+  <main>
+    <section>
+      <div id="grafico_div" style="width: 850px; height: 450px;"></div>
+    </section>
+  </main>
+</body>
+</html>

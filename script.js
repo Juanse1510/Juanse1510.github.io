@@ -9,10 +9,12 @@ let errorCounts = {
 const maxCycles = 1000;
 
 document.getElementById('btn-process').addEventListener('click', function() {
+    console.log("Botón presionado"); 
     evaluateEquation();
 });
 
 function evaluateEquation() {
+    console.log("Iniciando evaluación"); 
     errorCounts = {
         asinError: 0,
         acosError: 0,
@@ -71,7 +73,9 @@ function computeYWithErrors(x, y, z, w, v, u, n, o, p, q, r, s, t) {
         const denominator = (fourthTerm + fifthTerm) / sixthTerm;
 
         if (denominator === 0) errorCounts.divisionError++;
+
         if (u === 0) errorCounts.divisionError++;
+
         if (t === 0) errorCounts.divisionError++;
 
         const Y = numerator / denominator + seventhTerm;
@@ -87,7 +91,8 @@ function generateRandomValue() {
 }
 
 function renderResults(errorCounts) {
-    const resultsTable = document.getElementById('table-results'); // Cambiado el ID aquí
+    console.log("Renderizando resultados"); // Verificar si esta función se llama
+    const resultsTable = document.getElementById('table-results');
 
     const totalErrors = errorCounts.asinError + errorCounts.acosError + errorCounts.sqrtError + errorCounts.divisionError + errorCounts.logError;
 
@@ -122,21 +127,25 @@ function renderResults(errorCounts) {
 }
 
 function drawErrorChart(errorCounts) {
-    const chartData = google.visualization.arrayToDataTable([
-        ['Tipo de Error', 'Cantidad'],
-        ['Arcoseno', errorCounts.asinError],
-        ['Arcocoseno', errorCounts.acosError],
-        ['Raíz Cuadrada', errorCounts.sqrtError],
-        ['División', errorCounts.divisionError],
-        ['Logaritmo Natural', errorCounts.logError]
-    ]);
+    console.log("Intentando dibujar el gráfico"); // Verificar si se alcanza esta función
+    google.charts.load('current', {packages: ['corechart']});
+    google.charts.setOnLoadCallback(function() {
+        const chartData = google.visualization.arrayToDataTable([
+            ['Tipo de Error', 'Cantidad'],
+            ['Arcoseno', errorCounts.asinError],
+            ['Arcocoseno', errorCounts.acosError],
+            ['Raíz Cuadrada', errorCounts.sqrtError],
+            ['División', errorCounts.divisionError],
+            ['Logaritmo Natural', errorCounts.logError]
+        ]);
 
-    const chartOptions = {
-        title: 'Distribución de Errores',
-        is3D: true,
-        pieHole: 0.4
-    };
+        const chartOptions = {
+            title: 'Distribución de Errores',
+            is3D: true,
+            pieHole: 0.4
+        };
 
-    const errorChart = new google.visualization.PieChart(document.getElementById('chart'));
-    errorChart.draw(chartData, chartOptions);
+        const errorChart = new google.visualization.PieChart(document.getElementById('chart'));
+        errorChart.draw(chartData, chartOptions);
+    });
 }

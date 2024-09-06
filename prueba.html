@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Demostración con Gráficos de Google</title>
-  <script src="https://www.gstatic.com/charts/loader.js"></script>
-  <script>
-    google.charts.load('current', {packages: ['corechart']});
-    google.charts.setOnLoadCallback(renderChart);
+  <title>Prueba de Gráfico de Google Charts</title>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script type="text/javascript">
+    google.charts.load('current', {'packages':['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
 
-    function renderChart() {
-      const datos = google.visualization.arrayToDataTable([
-        ['Categoría de Error', 'Frecuencia'],
+    function drawChart() {
+      var data = google.visualization.arrayToDataTable([
+        ['Tipo de Error', 'Cantidad'],
         ['Arcoseno', 187],
         ['Arcocoseno', 513],
         ['Raíz Cuadrada', 481],
@@ -19,25 +19,19 @@
         ['Logaritmo Natural', 579]
       ]);
 
-      const opciones = {
-        title: 'Distribución de Tipos de Errores',
-        is3D: false,
-        pieHole: 0.3
+      var options = {
+        title: 'Distribución de Errores',
+        is3D: true,
+        pieHole: 0.4
       };
 
-      const grafico = new google.visualization.PieChart(document.querySelector('#grafico_div'));
-      grafico.draw(datos, opciones);
+      var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+      chart.draw(data, options);
     }
   </script>
 </head>
 <body>
-  <header>
-    <h2>Visualización de Datos con Google Charts</h2>
-  </header>
-  <main>
-    <section>
-      <div id="grafico_div" style="width: 850px; height: 450px;"></div>
-    </section>
-  </main>
+  <h1>Prueba de Gráfico de Google Charts</h1>
+  <div id="chart_div" style="width: 900px; height: 500px;"></div>
 </body>
 </html>

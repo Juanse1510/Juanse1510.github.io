@@ -71,9 +71,7 @@ function computeYWithErrors(x, y, z, w, v, u, n, o, p, q, r, s, t) {
         const denominator = (fourthTerm + fifthTerm) / sixthTerm;
 
         if (denominator === 0) errorCounts.divisionError++;
-
         if (u === 0) errorCounts.divisionError++;
-
         if (t === 0) errorCounts.divisionError++;
 
         const Y = numerator / denominator + seventhTerm;
@@ -89,7 +87,7 @@ function generateRandomValue() {
 }
 
 function renderResults(errorCounts) {
-    const resultsTable = document.getElementById('tabla-resultados');
+    const resultsTable = document.getElementById('table-results'); // Cambiado el ID aquí
 
     const totalErrors = errorCounts.asinError + errorCounts.acosError + errorCounts.sqrtError + errorCounts.divisionError + errorCounts.logError;
 
@@ -124,24 +122,21 @@ function renderResults(errorCounts) {
 }
 
 function drawErrorChart(errorCounts) {
-    google.charts.load('current', {packages: ['corechart']});
-    google.charts.setOnLoadCallback(function() {
-        const chartData = google.visualization.arrayToDataTable([
-            ['Tipo de Error', 'Cantidad'],
-            ['Arcoseno', errorCounts.asinError],
-            ['Arcocoseno', errorCounts.acosError],
-            ['Raíz Cuadrada', errorCounts.sqrtError],
-            ['División', errorCounts.divisionError],
-            ['Logaritmo Natural', errorCounts.logError]
-        ]);
+    const chartData = google.visualization.arrayToDataTable([
+        ['Tipo de Error', 'Cantidad'],
+        ['Arcoseno', errorCounts.asinError],
+        ['Arcocoseno', errorCounts.acosError],
+        ['Raíz Cuadrada', errorCounts.sqrtError],
+        ['División', errorCounts.divisionError],
+        ['Logaritmo Natural', errorCounts.logError]
+    ]);
 
-        const chartOptions = {
-            title: 'Distribución de Errores',
-            is3D: true,
-            pieHole: 0.4
-        };
+    const chartOptions = {
+        title: 'Distribución de Errores',
+        is3D: true,
+        pieHole: 0.4
+    };
 
-        const errorChart = new google.visualization.PieChart(document.getElementById('chart'));
-        errorChart.draw(chartData, chartOptions);
-    });
-}hp
+    const errorChart = new google.visualization.PieChart(document.getElementById('chart'));
+    errorChart.draw(chartData, chartOptions);
+}
